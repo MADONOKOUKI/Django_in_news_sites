@@ -25,3 +25,12 @@ def hello_for(request):
         'objects': range(10),
     }
     return render(request, 'for.html', d)
+
+def hello_get_query(request):
+    # d = {
+    #     'your_name': request.GET.get('your_name')
+    # }
+    d = {
+        'your_name': request.GET.get('your_name')
+    }
+    return render(request, 'get_query.html',d)
