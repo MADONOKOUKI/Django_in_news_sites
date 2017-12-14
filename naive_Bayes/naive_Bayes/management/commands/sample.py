@@ -1,0 +1,6 @@
+# vim*:fileencoding=utf8
+from django.core.management.base import BaseCommand
+
+class Command(BaseCommand):
+  def handle(self, *args, **options):
+    print('call sample command.')
