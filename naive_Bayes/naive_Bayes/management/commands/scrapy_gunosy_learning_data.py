@@ -1,6 +1,6 @@
 # vim*:fileencoding=utf8
 from django.core.management.base import BaseCommand
-mport pickle
+import pickle
 import requests
 from bs4 import BeautifulSoup
 import time
@@ -32,13 +32,14 @@ class Command(BaseCommand):
             soup = BeautifulSoup(r.text, 'lxml') #要素を抽出
             for div in soup.find_all("div",class_="article gtm-click"):
               for p in div.find_all("p"):
+                print(p.text)
                 x_train.append(p.text)
                 y_train.append(i)
-    # save scrapied data as pkl file
-    with open('x_train_2.pkl','wb') as f:
-      pickle.dump(x_train,f)
-    with open('y_train_2.pkl','wb') as f:
-      pickle.dump(y_train,f)
+    # # save scrapied data as pkl file
+    # with open('x_train_2.pkl','wb') as f:
+    #   pickle.dump(x_train,f)
+    # with open('y_train_2.pkl','wb') as f:
+    #   pickle.dump(y_train,f)
 
 
 
