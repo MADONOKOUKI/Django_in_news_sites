@@ -16,6 +16,7 @@ class NaiveBayes():
 
         for info in info_of_words:
             # macabで分けると、文の最後に’’が、その手前に'EOS'が来る
+            # print(info)
             if info == 'EOS' or info == '':
                 break
                 # info => 'な\t助詞,終助詞,*,*,*,*,な,ナ,ナ'
@@ -25,7 +26,10 @@ class NaiveBayes():
                 # info_elems[0] => 'ヴァンロッサム\t名詞'
                 words.append(info_elems[0][:-3])
                 continue
+            if(info_elems[6] == '記号'):
+                continue
             words.append(info_elems[6])
+        # print(tuple(words))
         return tuple(words)
 
     def word_count_up(self, word, category):
