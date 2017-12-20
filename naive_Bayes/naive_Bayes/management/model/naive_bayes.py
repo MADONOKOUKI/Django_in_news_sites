@@ -26,10 +26,9 @@ class NaiveBayes():
                 # info_elems[0] => 'ヴァンロッサム\t名詞'
                 words.append(info_elems[0][:-3])
                 continue
-            if(info_elems[6] == '記号'):
-                continue
-            words.append(info_elems[6])
-        # print(tuple(words))
+            part = info_elems[0].split('\t')
+            if(part[1] == '名詞' or part[1] == '動詞' or part[1] == '形容詞'):
+                words.append(info_elems[6])
         return tuple(words)
 
     def word_count_up(self, word, category):
@@ -63,7 +62,10 @@ class NaiveBayes():
 
     def word_prob(self, word, category):
         # ベイズの法則の計算。通常、非常に0に近い小数になる。
-        numerator = self.num_of_appearance(word, category) + 1  # +1は加算スムージングのラプラス法
+        """
+            TF-Transoformation :self.num_of_appearance(word, category) + 1  -> math.log(self.num_of_appearance(word, category) + 1 )
+        """
+        numerator = self.num_of_appearance(word, category) + 1  #+1は加算スムージングのラプラス法
         denominator = sum(self.word_count[category].values()) + len(self.vocabularies)
 
         # Python3では、割り算は自動的にfloatになる
@@ -71,10 +73,15 @@ class NaiveBayes():
         return prob
 
     def score(self, words, category):
+        """
+            score
+                ① あるカテゴリの中にどれくらいの種類の単語が含まれているか
+                ②　どれくらい現れたか + / (カテゴリ内の全単語 + 全単語のdistictな数)
+        """
         # logを取るのは、word_probが0.000....01くらいの小数になったりするため
         score = math.log(self.prior_prob(category))
         for word in words:
-            score += math.log(self.word_prob(word, category))
+            score += 3 * math.log(self.word_prob(word, category))
         return score
 
     # logを取らないと値が小さすぎてunderflowするかも。
@@ -85,10 +92,13 @@ class NaiveBayes():
         return score
 
     def classify(self, doc):
+        """
+        words -> Mecabで形態素解析されて記号を含まなくなったもの
+        """
         best_guessed_category = None
         max_prob_before = -sys.maxsize
         words = self.to_words(doc)
-
+        # print(words)
         for category in self.category_count.keys():
             prob = self.score(words, category)
             if prob > max_prob_before:
