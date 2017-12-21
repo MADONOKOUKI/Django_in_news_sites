@@ -27,6 +27,7 @@ class NaiveBayes():
                 words.append(info_elems[0][:-3])
                 continue
             part = info_elems[0].split('\t')
+            # 名詞と動詞と形容詞のみを訓練データとする
             if(part[1] == '名詞' or part[1] == '動詞' or part[1] == '形容詞'):
                 words.append(info_elems[6])
         return tuple(words)
