@@ -1,0 +1,5 @@
+.gitignore
+*.pkl
+virtualenv/
+*.txt
+*..DS_Store

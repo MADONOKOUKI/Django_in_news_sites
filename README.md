@@ -1,5 +1,3 @@
-[![gunosy](https://gunosy.com/ "Gunosy")](https://gunosy.com/)
-
 # Naive Bayes classifier
 
 Welcome to my Naive Bayes classifier! In this directory, you'll find the files you need to be able to study regarding classification task, especially naive bayes classification with Django .
@@ -66,7 +64,3 @@ Please clone and setup using above commands.
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/MADONOKOUKI/guno_project. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
 
-
-## License
-
-The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
