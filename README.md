@@ -48,6 +48,7 @@ python3 manage.py eval_model
 ```
 
 on your terminal, you can check accuracy rate (highest rate : 0.9351626368)
+The accuracy rate was checked by cross validation methods.See this link[cross validation](https://qiita.com/kenmatsu4/items/0a862a42ceb178ba7155)
 
 example4
 ```Python3
@@ -59,6 +60,8 @@ You can scrapy news data (Time : about 1h30min)
 ## Development
 
 Please clone and setup using above commands.
+
+
 
 ## Contributing
 
