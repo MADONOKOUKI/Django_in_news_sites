@@ -1,0 +1,8 @@
+.gitignore
+*.pkl
+/virtualenv/
+*.txt
+/naive_Bayes/.DS_Store
+/naive_Bayes/naive_Bayes/.DS_Store
+/naive_Bayes/naive_Bayes/management/.DS_Store
+/naive_Bayes/naive_Bayes/management/commands/.DS_Store
