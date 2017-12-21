@@ -2,10 +2,10 @@
 
 {% block body %}
     <form action="" method="get">
-        <label>カテゴリを判別したい記事のURLを入力して下さい:<input type="text" size="20" name="your_name"></label>
+        <label>カテゴリを判別したい記事のURLを入力して下さい:<input type="text" size="20" name="result"></label>
         <input type="submit" value="送信">
     </form>
-    {% if your_name %}
-        この記事のカテゴリは{{ your_name }}です
+    {% if result %}
+        この記事のカテゴリは{{ result }}です
     {% endif %}
 {% endblock %}

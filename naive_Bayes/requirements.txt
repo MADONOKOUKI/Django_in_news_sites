@@ -1,7 +1,10 @@
 apipkg==1.4
 appnope==0.1.0
 attrs==17.3.0
+beautifulsoup4==4.6.0
 bleach==1.5.0
+certifi==2017.11.5
+chardet==3.0.4
 cycler==0.10.0
 decorator==4.1.2
 Django==2.0
@@ -9,6 +12,7 @@ entrypoints==0.2.3
 enum34==1.1.6
 execnet==1.5.0
 html5lib==0.9999999
+idna==2.6
 ipykernel==4.7.0
 ipython==6.2.1
 ipython-genutils==0.2.0
@@ -21,9 +25,11 @@ jupyter-client==5.1.0
 jupyter-console==5.2.0
 jupyter-core==4.4.0
 Keras==2.1.2
+lxml==4.1.1
 Markdown==2.6.10
 MarkupSafe==1.0
 matplotlib==2.1.1
+mecab-python3==0.7
 mistune==0.8.3
 nbconvert==5.3.1
 nbformat==4.4.0
@@ -49,6 +55,7 @@ pytz==2017.3
 PyYAML==3.12
 pyzmq==16.0.3
 qtconsole==4.3.1
+requests==2.18.4
 scikit-learn==0.19.1
 scipy==1.0.0
 simplegeneric==0.8.1
@@ -59,6 +66,7 @@ terminado==0.8.1
 testpath==0.3.1
 tornado==4.5.2
 traitlets==4.3.2
+urllib3==1.22
 wcwidth==0.1.7
 Werkzeug==0.13
 widgetsnbextension==3.0.8

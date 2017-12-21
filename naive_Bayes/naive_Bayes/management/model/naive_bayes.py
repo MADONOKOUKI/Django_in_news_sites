@@ -81,7 +81,7 @@ class NaiveBayes():
         # logを取るのは、word_probが0.000....01くらいの小数になったりするため
         score = math.log(self.prior_prob(category))
         for word in words:
-            score += 3 * math.log(self.word_prob(word, category))
+            score += math.log(self.word_prob(word, category))
         return score
 
     # logを取らないと値が小さすぎてunderflowするかも。

@@ -19,6 +19,15 @@ type_list:
 type_list = [[1,9,10,11,12,13,14,15,17],[2,18,51,19,21,22,43,44,47,48,54],
         [23,24,25],[26,27,28],[29,30],[6,31,32,33,42],[7,34,35,36,37,52]]
 
+"""
+  スクレイピングのプロセス
+  ・urlの右に番号を付け加える
+  ・BeautifulSoupを使用してアクセス・要素抽出
+  ・記事のカテゴリと全テキストを書き込み
+  ・(記事の全文章,カテゴリ)となるようにx_train、y_trainに文字列を保存する
+  ・pickleファイルに保存する
+"""
+
 class Command(BaseCommand):
   def handle(self, *args, **options):
     print('start scrapying gunosy news')
@@ -27,10 +36,10 @@ class Command(BaseCommand):
         print(i)
         target_url = "https://gunosy.com/categories/"
         target_url += str(i)
-        # page数が　1 ~ 5のため
+        # page数が1 ~ 5のため
         for j in range(1,6):
           check_url = target_url +"?page=" + str(j)
-          r = requests.get(check_url)         #requestsを使って、webから取得
+          r = requests.get(check_url) #requestsを使って、webから取得
           time.sleep(1)
           soup = BeautifulSoup(r.text, 'lxml') #要素を抽出
           categories = []
@@ -43,17 +52,17 @@ class Command(BaseCommand):
                 url = a.get('href')
                 r = requests.get(url)
                 time.sleep(1)
-                # print(url)
                 soup = BeautifulSoup(r.text, 'lxml') #要素を抽出
                 for div in soup.find_all("div",class_="article gtm-click"):
+                  text = ""
                   for p in div.find_all("p"):
-                    # print(categories[1])
-                    x_train.append(p.text)
-                    y_train.append(categories[1])
+                    text += p.text
+                  x_train.append(text)
+                  y_train.append(categories[1])
     # save scrapied data as pkl file
-    with open('x_train_3.pkl','wb') as f:
+    with open('x_train_4.pkl','wb') as f:
       pickle.dump(x_train,f)
-    with open('y_train_3.pkl','wb') as f:
+    with open('y_train_4.pkl','wb') as f:
       pickle.dump(y_train,f)
 
 
