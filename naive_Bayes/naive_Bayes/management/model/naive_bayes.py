@@ -2,11 +2,13 @@ import math
 import sys
 import MeCab
 
+
 class NaiveBayes():
     def __init__(self):
         self.vocabularies = set()
         self.word_count = {}  # {'花粉症対策': {'スギ花粉': 4, '薬': 2,...} }
         self.category_count = {}  # {'花粉症対策': 16, ...}
+
     def to_words(self, sentence):
         # 学習文書を形態素解析(Taggerに「mecabrc」使用)
         tagger = MeCab.Tagger('mecabrc')
@@ -43,12 +45,12 @@ class NaiveBayes():
         self.category_count[category] += 1
 
     def train(self, doc, category):
-        #形態素解析
+        # 形態素解析
         words = self.to_words(doc)
         for word in words:
-            #カテゴリー内の単語の数え上げ
+            # カテゴリー内の単語の数え上げ
             self.word_count_up(word, category)
-        #カテゴリーの文章を数え上げ
+        # カテゴリーの文章を数え上げ
         self.category_count_up(category)
 
     def prior_prob(self, category):
@@ -64,10 +66,13 @@ class NaiveBayes():
     def word_prob(self, word, category):
         # ベイズの法則の計算。通常、非常に0に近い小数になる。
         """
-            TF-Transoformation :self.num_of_appearance(word, category) + 1  -> math.log(self.num_of_appearance(word, category) + 1 )
+            TF-Transoformation :self.num_of_appearance(word, category) + 1
+            -> math.log(self.num_of_appearance(word, category) + 1 )
         """
-        numerator = self.num_of_appearance(word, category) + 1  #+1は加算スムージングのラプラス法
-        denominator = sum(self.word_count[category].values()) + len(self.vocabularies)
+        numerator = self.num_of_appearance(
+            word, category) + 1  # +1は加算スムージングのラプラス法
+        denominator = sum(
+            self.word_count[category].values()) + len(self.vocabularies)
 
         # Python3では、割り算は自動的にfloatになる
         prob = numerator / denominator
