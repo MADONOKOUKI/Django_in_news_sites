@@ -28,7 +28,7 @@ class Command(BaseCommand):
           y_train = pickle.load(f)
 
         pop = len(x_train)
-        label = np.r_[np.repeat(0,pop-100), np.repeat(1,1)]
+        label = np.r_[np.repeat(0,pop-100), np.repeat(1,100)]
         skf = StratifiedKFold(label, n_folds=3, shuffle=True)
         total_score = 0
         rep = 0
