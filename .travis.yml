@@ -2,7 +2,6 @@ language: python
 python:
 - '3.6.0'
 install:
-  - pip install pep8
   - pip install coveralls
   - pip install codeclimate-test-reporter
   - pip install autopep8
@@ -12,8 +11,6 @@ script:
   - python -m unittest discover -v
   - coverage run -m unittest discover
   - pycodestyle .
-  - autopep -i .
-  - pep8 .
 after_success:
   - coveralls
   - codeclimate-test-reporter
