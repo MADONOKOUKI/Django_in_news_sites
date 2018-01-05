@@ -22,7 +22,8 @@ type_list = [[1, 9, 10, 11, 12, 13, 14, 15, 17],
              [26, 27, 28],
              [29, 30],
              [6, 31, 32, 33, 42],
-             [7, 34, 35, 36, 37, 52]]
+             [7, 34, 35, 36, 37, 52],
+             [38,39,40,41]]
 
 """
   スクレイピングのプロセス
@@ -68,7 +69,7 @@ class Command(BaseCommand):
                                     x_train.append(text)
                                     y_train.append(categories[1])
         # save scrapied data as pkl file
-        with open('x_train_4.pkl', 'wb') as f:
+        with open('x_train_5.pkl', 'wb') as f:
             pickle.dump(x_train, f)
-        with open('y_train_4.pkl', 'wb') as f:
+        with open('y_train_5.pkl', 'wb') as f:
             pickle.dump(y_train, f)
