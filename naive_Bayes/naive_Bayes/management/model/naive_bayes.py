@@ -66,7 +66,8 @@ class NaiveBayes():
     def word_prob(self, word, category):
         # ベイズの法則の計算。通常、非常に0に近い小数になる。
         """
-            TF-Transoformation :self.num_of_appearance(word, category) + 1  -> math.log(self.num_of_appearance(word, category) + 1 )
+            TF-Transoformation :self.num_of_appearance(word, category) + 1
+            -> math.log(self.num_of_appearance(word, category) + 1 )
         """
         numerator = self.num_of_appearance(
             word, category) + 1  # +1は加算スムージングのラプラス法
