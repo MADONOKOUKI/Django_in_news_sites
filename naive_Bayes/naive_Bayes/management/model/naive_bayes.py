@@ -55,7 +55,7 @@ class NaiveBayes():
 
     def prior_prob(self, category):
         print(self.category_count.values())
-        sum_of_all_doc_category= sum(self.category_count.values())
+        sum_of_all_doc_category = sum(self.category_count.values())
         sum_of_target_doc_category = self.category_count[category]
         return float(sum_of_target_doc_category / sum_of_all_doc_category)
 
