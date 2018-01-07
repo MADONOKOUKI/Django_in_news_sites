@@ -23,9 +23,9 @@ class Command(BaseCommand):
     y_train = []
 
     def handle(self, *args, **options):
-        with open('x_train_4.pkl', 'rb') as f:
+        with open('article_text_data.pkl', 'rb') as f:
             x_train = pickle.load(f)
-        with open('y_train_4.pkl', 'rb') as f:
+        with open('categories_data.pkl', 'rb') as f:
             y_train = pickle.load(f)
 
         pop = len(x_train)

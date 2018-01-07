@@ -22,7 +22,8 @@ type_list = [[1, 9, 10, 11, 12, 13, 14, 15, 17],
              [26, 27, 28],
              [29, 30],
              [6, 31, 32, 33, 42],
-             [7, 34, 35, 36, 37, 52]]
+             [7, 34, 35, 36, 37, 52],
+             [38, 39, 40, 41]]
 
 """
   スクレイピングのプロセス
@@ -62,13 +63,13 @@ class Command(BaseCommand):
                                 soup = BeautifulSoup(r.text, 'lxml')  # 要素を抽出
                                 for div in soup.find_all(
                                   "div", class_="article gtm-click"):
-                                    text = ""
+                                    article_text = ""
                                     for p in div.find_all("p"):
-                                        text += p.text
-                                    x_train.append(text)
+                                        article_text += p.text
+                                    x_train.append(article_text)
                                     y_train.append(categories[1])
         # save scrapied data as pkl file
-        with open('x_train_4.pkl', 'wb') as f:
+        with open('article_text_data.pkl', 'wb') as f:
             pickle.dump(x_train, f)
-        with open('y_train_4.pkl', 'wb') as f:
+        with open('categories_data.pkl', 'wb') as f:
             pickle.dump(y_train, f)

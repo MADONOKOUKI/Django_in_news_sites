@@ -54,11 +54,12 @@ class NaiveBayes():
         self.category_count_up(category)
 
     def prior_prob(self, category):
-        num_of_categories = sum(self.category_count.values())
-        num_of_docs_of_the_category = self.category_count[category]
-        return float(num_of_docs_of_the_category / num_of_categories)
+        print(self.category_count.values())
+        sum_of_all_doc_category= sum(self.category_count.values())
+        sum_of_target_doc_category = self.category_count[category]
+        return float(sum_of_target_doc_category / sum_of_all_doc_category)
 
-    def num_of_appearance(self, word, category):
+    def sum_of_appearance(self, word, category):
         if word in self.word_count[category]:
             return self.word_count[category][word]
         return 0
@@ -69,7 +70,7 @@ class NaiveBayes():
             TF-Transoformation :self.num_of_appearance(word, category) + 1
             -> math.log(self.num_of_appearance(word, category) + 1 )
         """
-        numerator = self.num_of_appearance(
+        numerator = self.sum_of_appearance(
             word, category) + 1  # +1は加算スムージングのラプラス法
         denominator = sum(
             self.word_count[category].values()) + len(self.vocabularies)
@@ -78,17 +79,17 @@ class NaiveBayes():
         prob = numerator / denominator
         return prob
 
-    def score(self, words, category):
+    def log_score(self, words, category):
         """
             score
                 ① あるカテゴリの中にどれくらいの種類の単語が含まれているか
                 ②　どれくらい現れたか + / (カテゴリ内の全単語 + 全単語のdistictな数)
         """
         # logを取るのは、word_probが0.000....01くらいの小数になったりするため
-        score = math.log(self.prior_prob(category))
+        log_score = math.log(self.prior_prob(category))
         for word in words:
-            score += math.log(self.word_prob(word, category))
-        return score
+            log_score += math.log(self.word_prob(word, category))
+        return log_score
 
     # logを取らないと値が小さすぎてunderflowするかも。
     def score_without_log(self, words, category):
@@ -102,12 +103,12 @@ class NaiveBayes():
         words -> Mecabで形態素解析されて記号を含まなくなったもの
         """
         best_guessed_category = None
-        max_prob_before = -sys.maxsize
+        max_log_prob_before = -sys.maxsize
         words = self.to_words(doc)
         # print(words)
         for category in self.category_count.keys():
-            prob = self.score(words, category)
-            if prob > max_prob_before:
-                max_prob_before = prob
+            log_prob = self.log_score(words, category)
+            if log_prob > max_log_prob_before:
+                max_log_prob_before = log_prob
                 best_guessed_category = category
         return best_guessed_category
