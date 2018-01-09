@@ -2,13 +2,15 @@ language: python
 python:
 - '3.6.0'
 install:
-  # - pip install -r test-requirements.txt
   - pip install coveralls
   - pip install codeclimate-test-reporter
+  - pip install autopep8
+  - pip install pycodestyle
 script:
   - python --version
   - python -m unittest discover -v
   - coverage run -m unittest discover
+  - pycodestyle .
 after_success:
   - coveralls
   - codeclimate-test-reporter
