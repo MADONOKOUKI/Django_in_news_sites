@@ -30,7 +30,6 @@ class Command(BaseCommand):
         skf = StraitifiedKFold(np.zeros(len(x_train)), n_folds=3, shuffle=True)
         total_score = 0
         rep = 0
-
         for i, (train, test) in enumerate(skf):
             total_score += train_and_evaluate_model(
                 NaiveBayes(), x_train, y_train, train, test)

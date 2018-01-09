@@ -3,3 +3,4 @@
 virtualenv/
 *.txt
 *..DS_Store
+*.pyc
