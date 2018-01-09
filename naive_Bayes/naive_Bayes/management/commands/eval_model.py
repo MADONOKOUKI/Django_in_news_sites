@@ -27,10 +27,7 @@ class Command(BaseCommand):
             x_train = pickle.load(f)
         with open('y_train_4.pkl', 'rb') as f:
             y_train = pickle.load(f)
-
-        pop = len(x_train)
-        label = np.r_[np.repeat(0, pop - 100), np.repeat(1, 1)]
-        skf = StratifiedKFold(label, n_folds=3, shuffle=True)
+        skf = StraitifiedKFold(np.zeros(len(x_train)), n_folds=3, shuffle=True)
         total_score = 0
         rep = 0
 
