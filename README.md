@@ -47,7 +47,7 @@ example3
 python3 manage.py eval_model
 ```
 
-on your terminal, you can check accuracy rate (highest rate : 0.9351626368)
+on your terminal, you can check accuracy rate (highest rate : 0.9271639178)
 The accuracy rate was checked by cross validation methods.See this link[cross validation](https://qiita.com/kenmatsu4/items/0a862a42ceb178ba7155)
 
 example4
